@@ -31,14 +31,41 @@ namespace _15._1HW
         public void PrintProductsInfo()
         {
             decimal totalPrice = 0;
+            bool productsExist = false;
 
             foreach (var product in products)
             {
-                product.PrintInfo();
-                totalPrice += product.GetPrice();
+                if (product != null)
+                {
+                    product.PrintInfo();
+                    totalPrice += product.GetPrice();
+                    productsExist = true;
+                }
             }
 
-            Console.WriteLine($"Total products price: {totalPrice}");
+            if (!productsExist)
+            {
+                Console.WriteLine("No products in the shop.");
+            }
+            else
+            {
+                Console.WriteLine($"Total products price: {totalPrice}");
+            }
+        }
+
+        public void PrintTotalPrice()
+        {
+            decimal totalPrice = 0;
+
+            foreach (var product in products)
+            {
+                if (product != null)
+                {
+                    totalPrice += product.GetPrice();
+                }
+            }
+
+            Console.WriteLine($"Total price of all products: {totalPrice}");
         }
     }
 }
